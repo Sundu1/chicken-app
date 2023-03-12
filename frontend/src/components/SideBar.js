@@ -5,7 +5,6 @@ const SideBar = () => {
   const [buttons, setButtons] = useState([
     {
       Name: "PROFILE OVERVIEW",
-      isVisible: false,
       values: [
         {
           field: "Messages",
@@ -35,7 +34,6 @@ const SideBar = () => {
     },
     {
       Name: "VENDORS",
-      isVisible: false,
       values: [
         {
           field: "Messages",
@@ -65,7 +63,6 @@ const SideBar = () => {
     },
     {
       Name: "SERVICES",
-      isVisible: false,
       values: [
         {
           field: "Messages",
@@ -124,12 +121,13 @@ const SideBar = () => {
         >
           {button.values.map((value) => {
             return (
-              <button
+              <a
+                href={`/LoginPage`}
                 key={value.field}
                 className="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52"
               >
-                <p className="text-base leading-4  ">{value.field}</p>
-              </button>
+                <p className="text-base leading-4 ml-5">{value.field}</p>
+              </a>
             );
           })}
         </div>
@@ -227,7 +225,7 @@ const SideBar = () => {
             <p className="text-base leading-4 ">Users</p>
           </button>
         </div>
-        <div className="no-scrollbar overflow-y-auto px-6 border-b border-gray-600 w-full">
+        <div className="no-scrollbar overflow-y-auto px-6 border-gray-600 w-full">
           {buttons.map((button) => {
             return <SideBarMenu button={button} key={button.Name} />;
           })}

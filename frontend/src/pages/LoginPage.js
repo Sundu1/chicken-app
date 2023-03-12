@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../components/UserContext";
 
 const LoginPage = () => {
+  const { user, setUser } = useContext(UserContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const submitJWT = () => {
-    console.log(username);
-    console.log(password);
+    setUser(username);
+    console.log(user);
   };
 
   return (

@@ -1,15 +1,29 @@
+import { useMemo, useState } from "react";
+import { Link, Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import "./components/NavBar";
-import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
-import MainSecion from "./components/MainSecion";
+import { UserContext } from "./components/UserContext";
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const providerValue = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [user, setUser]
+  );
+
   return (
     <div className="">
-      <SideBar />
-      <NavBar />
-      <MainSecion />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+        </Routes>
+      </UserContext.Provider>
     </div>
   );
 }

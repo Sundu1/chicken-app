@@ -25,25 +25,29 @@ SECRET_KEY = "django-insecure-@+902gxyrkkx1ndx_!!wssc4la)$v%-)jk_54y**h9&_6qt%ph
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 # Application definition
 
 INSTALLED_APPS = [
     "api",
+    'rest_framework',
+    'corsheaders',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
 ]
 
-
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -80,7 +84,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
         'default': {
             'ENGINE': 'mssql',
-            'NAME': 'db-test',
+            'NAME': 'db-new',
             'USER': 'admin-admin',
             'PASSWORD': 'sundui123@',
             'HOST': 'server-test123.database.windows.net',

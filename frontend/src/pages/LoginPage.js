@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../components/UserContext";
+import { getUsers } from "../model/getUsers";
 
 const LoginPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -8,8 +9,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const submitJWT = () => {
-    setUser(username);
-    console.log(user);
+    const data = getUsers(username, password);
+    if (data) setUser(username);
   };
 
   return (
@@ -19,11 +20,11 @@ const LoginPage = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img
+          {/* <img
             className="w-8 h-8 mr-2"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
             alt="logo"
-          />
+          /> */}
           Chicken App
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -37,7 +38,7 @@ const LoginPage = () => {
                 htmlFor="username"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Username
+                Username {user}
               </label>
               <input
                 type="username"

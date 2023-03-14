@@ -1,20 +1,12 @@
 import { useMemo, useState } from "react";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import { UserContext } from "./components/UserContext";
+import { UserContext, useLocalStorage } from "./components/UserContext";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const providerValue = useMemo(
-    () => ({
-      user,
-      setUser,
-    }),
-    [user, setUser]
-  );
+  const [user, setUser] = useLocalStorage("name", "Bob");
 
   return (
     <div className="">
